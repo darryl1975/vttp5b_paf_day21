@@ -29,4 +29,35 @@ public class RoomRepository {
 
         return rooms;
     }
+
+    public Room getRoomById(int id) {
+        SqlRowSet sqlRowSet = template.queryForRowSet(sql.sql_getRoomById, id);
+
+        Room rm = new Room();
+        while(sqlRowSet.next()) {
+
+            rm.setId(sqlRowSet.getInt("id"));
+            rm.setRoomtype(sqlRowSet.getString("roomtype"));
+            rm.setPrice(sqlRowSet.getFloat("price"));
+        }
+
+        return rm;
+    }
+
+    public Boolean deleteRoomById(int id) {
+
+        int roomDeleted = template.update(sql.sql_deleteRoomById, id);
+
+        if (roomDeleted > 0)
+            return true;
+        return false;
+    }
+
+    public Boolean updateRoomById(Room room) {
+        int roomUpdated = template.update(sql.sql_updateRoomById, room.getRoomtype(), room.getPrice(), room.getId());
+
+        if (roomUpdated > 0)
+            return true;
+        return false;
+    }
 }
