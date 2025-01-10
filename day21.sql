@@ -142,7 +142,7 @@ select * from room;
 select * from customer;
 
 # day 22
-
+# add addtional records
 insert into tv_shows 
 (title, lang, rating, user_rating, release_date) 
 values ('Jap Test 1', 'Japanese', 'PG', 8.0, '2025-01-15');
@@ -160,16 +160,113 @@ insert into tv_shows
 values ('Korea Test 2', 'Korea', 'PG', 8.0, '2025-01-15');
 
 
+# day 22 - slide 3
+select * from tv_shows;
+
 select distinct lang from tv_shows;
 
 select distinct lang, rating from tv_shows;
 
+select count(*) from tv_shows where lang like '%English%';
+
+select count(distinct title) from tv_shows where lang like '%Japanese';
+
+select count(distinct title) from tv_shows where lang in ('Japanese', 'Korea');
+
+# day 22 - slide 5
+
+select avg(user_rating) from tv_shows 
+where lang like '%Eng%';
+
+select sum(user_rating) from tv_shows 
+where lang like '%Eng%';
+
+select sum(user_rating) / count(*) from tv_shows
+where lang like '%Eng%';
+
+select rating, count(rating) from tv_shows
+group by rating;
+
+select rating, count(rating) as cnt from tv_shows
+group by rating
+order by count(rating) asc;
+
+select rating, count(rating) from tv_shows
+group by rating
+order by rating asc;
+
+select rating, count(rating) as cnt from tv_shows
+where lang in (select distinct lang from tv_shows where lang like '%Eng%')
+group by rating
+order by rating asc;
+
+# day 22 - slide 7
+select rating, count(rating) as cnt from tv_shows
+group by rating
+having count(rating) > 5
+order by rating asc;
+
+select * from
+(select rating, count(rating) as cnt from tv_shows
+group by rating
+order by rating asc) as tableA
+where tableA.cnt > 5;
+
+select title , rating , lang,
+max(rating) over (partition by lang ) as max_rating
+from tv_shows;
 
 
+select * from customer;
 
+delete from customer;
 
+# day 22 PM
+# over partition by
 
+create table car (
+	id int not null auto_increment,
+    make varchar(50),
+    model varchar(50),
+    cartype varchar(50),
+    price float default '10000.0',
+    constraint pk_car_id primary key (id)
+);
 
+insert into car (make, model, cartype, price) values ('Hyundai', 'Avante', 'sedan', 80000.0);
+insert into car (make, model, cartype, price) values ('Toyota', 'Altis', 'sedan', 82850.0);
+insert into car (make, model, cartype, price) values ('Ford', 'Falcom', 'low cost', 50000.0);
+insert into car (make, model, cartype, price) values ('Renault', 'Megane', 'standard', 90000.0);
+insert into car (make, model, cartype, price) values ('Hyundai', 'Box', 'premium', 120000.0);
+insert into car (make, model, cartype, price) values ('Honda', 'Civic', 'sports', 180000.0);
+insert into car (make, model, cartype, price) values ('Toyota', 'Two', 'sports', 155000.0);
+insert into car (make, model, cartype, price) values ('Honda', 'Fit', 'sports', 152850.0);
+insert into car (make, model, cartype, price) values ('Ford', 'Galaxy', 'standard', 79000.0);
+insert into car (make, model, cartype, price) values ('Toyota', 'Penguin', 'sedan', 69000.0);
+insert into car (make, model, cartype, price) values ('Renault', 'Fuego', 'sports', 65000.0);
+
+select * from car;
+
+select make, model, cartype, price
+, max(price) over (partition by cartype)  as max_cartype
+from car;
+
+select make, model, cartype, price
+, sum(price) over (partition by cartype)  as sum_cartype
+from car;
+
+select make, model, cartype, price
+, sum(price) over (partition by make)  as sum_cartype
+from car;
+
+select make, model, cartype, price
+, avg(price) over (partition by cartype)  as sum_cartype
+from car;
+
+select make, model, cartype, price
+, avg(price) over () as overall_avg_price
+, avg(price) over (partition by cartype)  as sum_cartype
+from car;
 
 
 
