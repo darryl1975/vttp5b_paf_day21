@@ -24,4 +24,22 @@ public class sql {
 
     public static final String sql_insertRoom = "INSERT into room (roomtype, price) VALUES (?, ?)";
 
+    public static final String sql_insertEmployee = "insert into employee (first_name, last_name, email, job_title, department, employment_date, salary, active) values (?, ?, ?, ?, ?, ?, ?, ?)";
+
+    public static final String sql_deleteEmployee = "update employee set active = false where id = ?";
+
+    public static final String sql_updateEmployee = "update employee set " + 
+                "first_name = ?," + 
+                "email = ?," + 
+                "job_title = ?," + //
+                "department = ?," + 
+                "employment_date = ?," + 
+                "salary = ?" + 
+                "where id = ?";
+
+    public static final String sql_selectEmployeeById = "select * from employee where id = ?";
+
+    public static final String sql_selectAllEmployees = "select * from employee";
+
+    
 }
