@@ -12,6 +12,8 @@ public class sql {
 
     public static final String sql_updateCustomerById = "UPDATE customer set fullname = ?, email = ? WHERE id = ?";
 
+    public static final String sql_insertCustomer = "INSERT into customer (fullname, email) VALUES (?, ?)";
+
     public static final String sql_getAllRooms = "SELECT * FROM room";
 
     public static final String sql_getRoomById = "SELECT * FROM room WHERE id = ?";
@@ -19,5 +21,7 @@ public class sql {
     public static final String sql_deleteRoomById = "DELETE FROM room WHERE id = ?";
 
     public static final String sql_updateRoomById = "UPDATE room set roomtype = ?, price = ? WHERE id = ?";
+
+    public static final String sql_insertRoom = "INSERT into room (roomtype, price) VALUES (?, ?)";
 
 }

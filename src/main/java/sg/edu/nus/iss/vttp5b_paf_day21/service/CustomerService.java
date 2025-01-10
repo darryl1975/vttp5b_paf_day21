@@ -10,9 +10,9 @@ import sg.edu.nus.iss.vttp5b_paf_day21.repository.CustomerRepository;
 
 @Service
 public class CustomerService {
-        @Autowired
+    @Autowired
     private CustomerRepository customerRepository;
- 
+
     public List<Customer> getAllCustomers() {
         return customerRepository.getCustomers();
     }
@@ -31,5 +31,9 @@ public class CustomerService {
 
     public Boolean updateCustomerById(Customer customer) {
         return customerRepository.updateCustomerById(customer);
+    }
+
+    public Boolean insertCustomer(Customer customer) {
+        return customerRepository.insertNewCustomer(customer);
     }
 }

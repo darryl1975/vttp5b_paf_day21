@@ -15,6 +15,8 @@ import sg.edu.nus.iss.vttp5b_paf_day21.service.CustomerService;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PostMapping;
+
 
 
 @RestController
@@ -57,5 +59,13 @@ public class CustomerRestController {
         
         return ResponseEntity.ok().body(customerUpdated);
     }
+
+    @PostMapping("")
+    public ResponseEntity<Boolean> createCustomer(@RequestBody Customer customer) {
+        Boolean customerCreated = customerService.insertCustomer(customer);
+        
+        return ResponseEntity.ok().body(customerCreated);
+    }
+    
 
 }

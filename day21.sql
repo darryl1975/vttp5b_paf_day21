@@ -92,6 +92,7 @@ insert into tv_shows
 (title, lang, rating, user_rating, release_date) 
 values ('Inside Out 2', 'English', 'G', 8.0, '2024-05-15');
 
+
 select * 
 from tv_shows
 where user_rating >= 8.0 
@@ -140,10 +141,28 @@ select * from room;
 
 select * from customer;
 
+# day 22
+
+insert into tv_shows 
+(title, lang, rating, user_rating, release_date) 
+values ('Jap Test 1', 'Japanese', 'PG', 8.0, '2025-01-15');
+
+insert into tv_shows 
+(title, lang, rating, user_rating, release_date) 
+values ('Jap Test 2', 'Japanese', 'PG', 8.0, '2025-01-15');
+
+insert into tv_shows 
+(title, lang, rating, user_rating, release_date) 
+values ('Korea Test 1', 'Korea', 'PG', 8.0, '2025-01-15');
+
+insert into tv_shows 
+(title, lang, rating, user_rating, release_date) 
+values ('Korea Test 2', 'Korea', 'PG', 8.0, '2025-01-15');
 
 
+select distinct lang from tv_shows;
 
-
+select distinct lang, rating from tv_shows;
 
 
 
