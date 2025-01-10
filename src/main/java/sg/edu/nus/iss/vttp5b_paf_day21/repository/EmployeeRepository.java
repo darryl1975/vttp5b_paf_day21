@@ -75,7 +75,7 @@ public class EmployeeRepository {
     }
 
     public Boolean updateEmployeeById(Employee employee) {
-        int employeeUpdated = template.update(sql.sql_updateEmployee, employee.getFirst_name(), employee.getEmail(), employee.getJob_title(), employee.getDepartment(), employee.getEmployement_date(), employee.getSalary());
+        int employeeUpdated = template.update(sql.sql_updateEmployee, employee, employee.getEmail(), employee.getJob_title(), employee.getDepartment(), employee.getEmployement_date(), employee.getSalary());
 
         if (employeeUpdated > 0) {
             return true;
