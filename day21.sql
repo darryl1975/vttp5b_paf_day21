@@ -2,9 +2,8 @@
 
 use vttp_2025;
 
-drop table tv_shows;
 
-/*
+
 create table tv_shows (
 	prog_id int not null auto_increment,
     title char(64) not null,
@@ -20,7 +19,7 @@ create table tv_shows (
 
 select * from information_schema.table_constraints
 where table_name = 'tv_shows'
-*/
+
 
 create table tutorial (
 	id int not null auto_increment,
@@ -269,6 +268,59 @@ select make, model, cartype, price
 from car;
 
 
+create table employee (
+	id int not null auto_increment,
+	first_name varchar(50) not null,
+	last_name varchar(50) not null,
+	email varchar(255),
+	job_title varchar(100),
+	department varchar(100),
+	employment_date date,
+	salary float,
+	constraint pk_employee_id primary key (id)
+);
 
+alter table employee
+add active boolean;
+
+alter table employee
+auto_increment = 1;
+
+
+create table dependant(
+	id int not null auto_increment,
+	first_name varchar(50) not null,
+	last_name varchar(50) not null,
+	birth_date date,
+	relationship varchar(30),
+	employee_id int,
+	constraint pk_dependant_id primary key (id),
+	constraint fk_dep_emp_id foreign key (employee_id) references employee(id)
+);
+
+# For GetMapping
+select * from employee;
+
+# For GetMapping
+select * from employee where id = 1;
+
+delete from employee where id = 1;
+
+# For DeleteMapping
+update employee set active = false where id = 1;
+
+# For PostMapping
+insert into employee (first_name, last_name, email, job_title, department, employment_date, salary, active) values
+('Darryl', 'Ng', 'darrylng@nus.edu.sg', 'Lecturer', 'ISS', '2021-09-08', 7000.0, true);
+
+# For UpdateMapping
+update employee set
+first_name = 'Alibaba',
+email = 'alibaba@alibaba.com.sg',
+job_title = 'CEO',
+department = 'master of no one',
+employment_date = '2025-01-01',
+salary = '2000000.0'
+where id = 1;
 
 
